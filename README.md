@@ -60,7 +60,7 @@ The market fit of our application is that most professionals start out their day
 ![Wireframe ](https://user-images.githubusercontent.com/71145696/129054420-65edf8fd-79cb-49a9-89a3-46f52966cadb.png)
 
 <h3>Project Management</h3>
-<p>We decided to manage the project sprints and development using Trello. As tasks were delegated to individuals on the team and also indicate tasks we chose to execute as a group.</p>
+<p>We decided to manage the project sprints and development using Trello. Tasks were delegated amidst ourselves and we also indicated tasks we chose to execute as a group.</p>
 
 ![Screenshot 2021-08-11 at 18 06 21](https://user-images.githubusercontent.com/71145696/129072659-a7cd92f1-e1cb-4b60-81e9-c91f0ab9a319.png)
 
