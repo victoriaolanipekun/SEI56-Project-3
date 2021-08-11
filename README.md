@@ -17,7 +17,7 @@
 
 <h1>Deployment</h1>
 <p>Please follow the link to explore the application: https://heissapp.herokuapp.com/</p>
-<p>Repository link: https://github.com/victoriaolanipekun/DRINKARD</p>
+<p>Repository link: https://github.com/victoriaolanipekun/SEI56-Project-3</p>
 
 <h1>Technologies used</h1>
 <li>HTML5</li>
