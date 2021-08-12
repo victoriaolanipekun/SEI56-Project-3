@@ -65,9 +65,116 @@ The market fit of our application is that most professionals start out their day
 ![Screenshot 2021-08-11 at 18 06 21](https://user-images.githubusercontent.com/71145696/129072659-a7cd92f1-e1cb-4b60-81e9-c91f0ab9a319.png)
 
 
+<h1>Process</h1>
+<h3>Backend</h3>
+<p>As soon as we were happy with our wireframes, we began working on our backend in Node.js, creating models, controllers, and routes. I created an initial seeds file to work with. We had just 9 days to build our application, so we decided to build the fundamental backend as a group with each member of the team screen-sharing and taking turns and then go full stack individual developers for the other features we needed to develop independently. Any blockers a team member struggled to overcome, we would all troubleshoot collaboratively to sort them out as efficiently as possible.
+
+This created an environment in which every member of the team knew the details of the fundamental backend, which came in especially useful when buiding the React frontend. We then later took time to explain other features we had individually built as a group. I will give an overview of the app's architecture and go into more details on some of the features that we built as a group and those that were built by me.
+</p>
+
+<h3>Collections</h3>
+<h4>Models</h4>
+
+* For our collections, we specified models using Mongoose which provides a built in Schema class. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+
+A Drink Schema: Each key in our code `drinkSchema` defines a property in our documents which will be cast to its associated SchemaType (Mongoose converts our schema paths into SchemaTypes automatically).
+
+```
+    const drinkSchema = new mongoose.Schema({
+      drink: { type: String, required: true, unique: true },
+      type: { type: String, required: true },
+      country: { type: String, required: true },
+      description: { type: String, required: true },
+      image: { type: String, required: true },
+      funFact: { type: String, maxlength: 300 }
+    })
+```
+
+A User Schema: The `userSchema` defines a property in our documents which will be used in the registeration and login (authentication process).
+
+```
+    const userSchema = new mongoose.Schema({
+      username: { type: String, required: true, maxLength: 30, unique: true },
+      email: { type: String, required: true, unique: true },
+      password: { type: String, required: true }
+      image: { type: String, required: true }
+    })
+```
+A Virtual User Schema: The `userSchema.virtual` defines reverse relationship that shows all drinks related to current user.
+
+``` 
+    userSchema.virtual('createdDrinks', {
+      ref: 'Drink', // references the Drink model
+      localField: '_id',
+      foreignField: 'owner'
+    })
+```
+
+<h4>Router</h4>
+
+In the `config` folder we created a `router.js` file to define our API endpoints for calling each collection
+
+```
+    router.route('/drinks')
+      .get(getAllDrinks)
+      .post(createDrink)
+
+    router.route('/drinks/:id')
+      .get(displayDrink)
+      .put(editDrink)
+      .delete(deleteDrink)
+      
+    router.route('/register')
+      .post(registerUser)
+
+    router.route('/login')
+      .post(loginUser)
+
+```
+To retrive data from the database, each of these defined endpoints relies on a separate function in the files in our `Controllers` folder
+<h4>Controllers</h4>
+
+* We implemented functions that will enable access to the collection
+* We implemented specific functions to access all of the data in the database or to find a specific drink by ID.
+* The controller holds functionality to add new drinks, edit and delete them.
+* The example below shows the process of adding a new drink to the database by a registered owner identified by `req.currentUser._id `, using the create method.
+
+```
+    
+    export const createDrink = async (req, res) => {
+      try {
+        const drinkWithOwner = { ...req.body, owner: req.currentUser._id }
+        console.log(drinkWithOwner)
+        const drinkToAdd = await Drink.create(drinkWithOwner)
+        console.log('DRINK TO ADD', drinkToAdd)
+        return res.status(201).json(drinkToAdd)
+      } catch (err) {
+        console.log(err)
+        return res.status(422).json(err)
+      }
+    }
+
+```
 
 
-<p>I will give an overview of the app's architecture and delve into more detail on some of the features I built.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
