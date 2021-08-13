@@ -250,7 +250,7 @@ Finally we went ahead to seed the database through the `seed.js` file, with the 
 <h2>My Individual Contribution</h2>
 Once we were done with the backend as a group we set out on our individual tasks. My tasks was to build the homepage, basket(cart) and the map functionalities. I successfully did two of the tasks while the map wasn't completely finished due to limited time and I'd delve into more details of my contribution now.
 
-<h3>Basket Backend</h3>
+<h3>Cart (Basket) Backend</h3>
 <h4>Model</h4>
 
 shoppedDrinkSchema: The very first step I took toward the cart build was to specify the basket model, with the newly selected (shopped) drink having a new unique ID `drinkId`, and this is in a bid to ensure that when the drink that might be added to the cart by the user is deleted the original drink in the database is still intact so hence the new ID for this.  Also for a better user experience, it was okay for a user to shop our drinks without necessarily being registered so the authentication process wasn't needed here. 
