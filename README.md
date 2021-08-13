@@ -75,7 +75,7 @@ This created an environment in which every member of the team knew the details o
 <h3>Collections</h3>
 <h4>Models</h4>
 
-* For our collections, we specified models using Mongoose which provides a built in Schema class. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+* For our collection, we specified model using Mongoose which provides a built in Schema class. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
 
 A Drink Schema: Each key in our code `drinkSchema` defines a property in our documents which will be cast to its associated SchemaType (Mongoose converts our schema paths into SchemaTypes automatically).
 
@@ -86,27 +86,11 @@ A Drink Schema: Each key in our code `drinkSchema` defines a property in our doc
       country: { type: String, required: true },
       description: { type: String, required: true },
       image: { type: String, required: true },
-      funFact: { type: String, maxlength: 300 }
-    })
-```
-
-A User Schema: The `userSchema` defines a property in our documents which will be used in the registeration and login (authentication process).
-
-```
-    const userSchema = new mongoose.Schema({
-      username: { type: String, required: true, maxLength: 30, unique: true },
-      email: { type: String, required: true, unique: true },
-      password: { type: String, required: true }
-      image: { type: String, required: true }
-    })
-```
-A Virtual User Schema: The `userSchema.virtual` defines reverse relationship that shows all drinks related to current user.
-
-``` 
-    userSchema.virtual('createdDrinks', {
-      ref: 'Drink', // references the Drink model
-      localField: '_id',
-      foreignField: 'owner'
+      funFact: { type: String, maxlength: 300 },
+      price: { type: Number, required: true },
+      countInStock: { type: Number, required: true },
+      origin: { type: String, required: true },
+      owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true }
     })
 ```
 
@@ -123,12 +107,6 @@ In the `config` folder we created a `router.js` file to define our API endpoints
       .get(displayDrink)
       .put(editDrink)
       .delete(deleteDrink)
-      
-    router.route('/register')
-      .post(registerUser)
-
-    router.route('/login')
-      .post(loginUser)
 
 ```
 To retrive data from the database, each of these defined endpoints relies on a separate function in the files in our `Controllers` folder
@@ -157,19 +135,116 @@ To retrive data from the database, each of these defined endpoints relies on a s
 ```
 
 
+<h3>User</h3>
+Our approach to the User model was to allow more functionality in the app once a person is registered to the website, including suggesting drinks, commenting on suggested drinks, rating drinks. Let me take you through the step by step approach on how we built this:
+<h4>Models</h4>
+
+* For our MongoDB to store individual users successfully, the User had to have its own model.
+
+A User Schema: The `userSchema` defines a property in our documents which will be used in the registeration and login (authentication process).
+
+```
+    const userSchema = new mongoose.Schema({
+      username: { type: String, required: true, maxLength: 30, unique: true },
+      email: { type: String, required: true, unique: true },
+      password: { type: String, required: true }
+      image: { type: String, required: true }
+    })
+```
+Mongoose has some incredibly powerful in-built methods which we also used in conjunction with Bcrypt for passwords hashing. Using the `pre` method, we were able to access Mongoose Schema’s lifecycle methods and run functions when users either register or login:
+
+* The first function we built was to check the password and passwordConfirmation field match from the user input during registration. If these were not to match, it would be invalid and halts the user from registering.
+
+* If during registration the first function is passed and accepted, the password entered uses bcrypt to encrypt the password before being stored into the database.Thisencryption protects the users paswords from hacker, so we were security focused. 
+
+* The final function checks the credentials of a user at login. The function checks the user inputted password against the hashed password in db, to ensure they match, else the user won't be able to login.
+
+<h4>Router</h4>
+
+In the `config` folder we created a `router.js` file to define our API endpoints built specifically for users
+
+```
+    router.route('/register')
+      .post(registerUser)
+
+    router.route('/login')
+      .post(loginUser)
+
+```
+<h4>User Controller</h4>
+
+* The controller holds functionalities that will enable users to register and login through the `auth.js` file
+* The example below shows the process of registering a new user to the database, using the create method.
+
+```
+    
+    export const registerUser = async (req, res) => {
+      try {
+        const newUser = await User.create(req.body)
+        console.log(newUser)
+        return res.status(202).json({ message: `Welcome ${newUser.username}` })
+
+      } catch (err) {
+        console.log(err)
+        return res.status(422).json(err)
+      }
+    }
 
 
+```
+<h3>Secure Route</h3>
+The secureRoute is an entirely separate file created with middleware to identify if a user is truly logged in. For the suggest a drink route which is only accessible for users stored in the database i.e already registered, we have specified the `secureRoute` function to run intially.
 
 
+```
+    
+    export const secureRoute = async (req, res, next) => {
+      try {
+        // check token exists in header
+        if (!req.headers.authorization) throw new Error('Missing headers')
+        //Remove unwanted characters from header
+        const token = req.headers.authorization.replace('Bearer ', '')
+        console.log('token', token)
+        //Payload 
+        const payload = jwt.verify(token, secret)
+        console.log('payload', payload)
+        //find user based on id in payload 
+        const userToVerify = await User.findById(payload.sub)
+        //check user exists
+        if (!userToVerify) throw new Error('User not found')
 
+        console.log(userToVerify)
 
+        req.currentUser = userToVerify 
 
+        next()
+      } catch (err) {
+        console.log(err)
+        return res.status(401).json({ message: 'Unauthorized' })
+      }
+    }
 
+```
+<h3>Seeding the database</h3>
+Finally we went ahead to seed the database through the `seed.js` file, with the drink.js file containing hard-coded drink data which were planted into our MongoDB. An example is given below:
 
-
-
-
-
+```
+{
+    drink: 'Turkish coffee, Türk kahvesi',
+    type: 'Coffee',
+    country: 'Turkey ',
+    description: ' Very finely ground coffee brewed by boiling.' ,
+    image: ' https://www.thespruceeats.com/thmb/z0dysGil3bQVHw7sgWFmACfC_pc=/4000x2667/filters:fill(auto,1)/turkish-coffee-recipe-2355497-hero-02-b14bd83fe6114322af9d8040801e8391.jpg' ,
+    funFact: 'First appearing in the Ottoman Empire, under the strictest interpretations of the Quran the strong coffee was considered a drug and its consumption was forbidden ' ,
+    price: 2,
+    countInStock: 20,
+    origin: 'Asia',
+    longitude: 100.619652,
+    latitude: 34.047863,
+    icon: '🇹🇷'
+  }
+  
+```
 
 
 
