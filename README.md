@@ -1,6 +1,8 @@
 ![image](https://user-images.githubusercontent.com/71145696/128151120-b3a88874-26e0-4e8c-b2e1-7dea3d5d3b3a.png)<h1> Project #3: The Heiss App </h1>
 
 ![homepage](https://user-images.githubusercontent.com/71145696/128992805-ee70c808-82e9-47f5-a3d1-d10e2fae250d.png)
+![Screenshot 2021-08-13 at 19 02 07](https://user-images.githubusercontent.com/71145696/129400663-4113f634-c08e-4b64-8585-551bb9739acb.png)
+
 
 <h1>Brief & Timeframe</h1>
 
