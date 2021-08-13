@@ -283,6 +283,7 @@ In the `router.js` file I defined our API endpoints for the cart
 ```
 
 <h4>Controllers</h4>
+
 Next I created controllers to enable the user add and delete drinks from the cart. The code snippet below shows the function used to add a drink to the cart. The `findById` method was used to find a single drink by its id.
 
 ```
