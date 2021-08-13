@@ -294,7 +294,6 @@ Next I created controllers to enable the user add and delete drinks from the car
         const { id } = req.params
         const drink = await Drink.findById(id)
         if (!drink) throw new Error('No drinker found')
-        // const drinkToAdd = { ...req.body, owner: req.currentUser._id }
         const drinkToAdd = { ...req.body }
         const shoppedDrink = await ShoppedDrink.create(drinkToAdd)
         console.log(shoppedDrink)
