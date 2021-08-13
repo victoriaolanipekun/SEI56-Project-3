@@ -310,10 +310,27 @@ Next I created controllers to enable the user add and delete drinks from the car
 <h3>Frontend(homepage, cart/basket)</h3>
 Having successfully built our API and tested it through Insomnia, we were ready to move onto the React frontend. I focused on designing the homepage, building the cart, map functionalities. 
 
-<h4>Homepage:</h4> I designed the homepage using the React Bootstrap CSS Framework, CSS3 + SCSS.
+<h4>Homepage:</h4> I styled the homepage using the React Bootstrap CSS Framework, CSS3 + SCSS.
 
 https://user-images.githubusercontent.com/71145696/129399555-fcf92c4b-411d-4838-980c-706100dc6b52.mov
 
+<h4>Cart/Basket:</h4> I wanted the user to be able to select drinks, increase the quantity and see the price displayed before checking out. I built the cart page using the React.js and styled using React Bootstrap CSS Framework, CSS3 + SCSS.
+
+![Screenshot 2021-08-13 at 19 17 23](https://user-images.githubusercontent.com/71145696/129402210-95b5c4ed-11b1-4968-b099-18ccbd584924.png)
+
+
+```
+
+    // gets data from suggested drink api
+    useEffect(() => {
+      const getData = async () => {
+        const { data } = await axios.get('/api/shopped-drinks')
+        console.log('DATA', data)
+        setShoppedDrinks(data)
+      }
+      getData()
+    }, [])
+```
 
 
 
