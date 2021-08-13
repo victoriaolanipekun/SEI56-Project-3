@@ -193,6 +193,7 @@ In the `config` folder we created a `router.js` file to define our API endpoints
 
 ```
 <h3>Secure Route</h3>
+
 The secureRoute is an entirely separate file created with middleware to identify if a user is truly logged in. For the suggest a drink route which is only accessible for users stored in the database i.e already registered, we have specified the `secureRoute` function to run intially.
 
 
@@ -226,10 +227,11 @@ The secureRoute is an entirely separate file created with middleware to identify
 
 ```
 <h3>Seeding the database</h3>
+
 Finally we went ahead to seed the database through the `seed.js` file, with the drink.js file containing hard-coded drink data which were planted into our MongoDB. An example is given below:
 
 ```
-{
+
     drink: 'Turkish coffee, Türk kahvesi',
     type: 'Coffee',
     country: 'Turkey ',
@@ -242,7 +244,7 @@ Finally we went ahead to seed the database through the `seed.js` file, with the 
     longitude: 100.619652,
     latitude: 34.047863,
     icon: '🇹🇷'
-  }
+  
   
 ```
 
