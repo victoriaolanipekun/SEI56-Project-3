@@ -318,10 +318,47 @@ https://user-images.githubusercontent.com/71145696/129399555-fcf92c4b-411d-4838-
 
 ![Screenshot 2021-08-13 at 19 17 23](https://user-images.githubusercontent.com/71145696/129402210-95b5c4ed-11b1-4968-b099-18ccbd584924.png)
 
+The shopped drink is displayed on the page, and users are able to view the price, their inputed quantity and the subtotal price of the drink. The user can also delete the drink from the cart.
+
+In the drink's show page i.e the `Drink.js` file I implemented the `handleChange` function that sets the quatity of drinks selected by the user and also the `handleCart` function which includes a formdata for the drink's ID, quantity, price and total. An Axios POST request is made to the shopped-drinks by drink's ID API.
 
 ```
 
-    // gets data from suggested drink api
+    const handleChange = (event) => {
+      console.log('changed=>', event.target.value)
+      setQuantity(event.target.value)
+    }
+
+    const handleCart = async (event) => {
+      event.preventDefault()
+      const total = quantity * drink.price
+      const formData = {
+        drinkId: drink._id,
+        quantity: parseInt(quantity),
+        price: drink.price,
+        total: total,
+      }
+
+      console.log('My form data=>', formData)
+
+      try {
+        await axios.post(
+          `/api/shopped-drinks/${drink._id}`,
+          formData
+        )
+        history.push('/shop-drink')
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  
+```
+
+On the cart's page to display the cart data that had been stored in the database I used an Axios GET request to the shopped-drinks API. This returns an array of drinks, that has been initially selected by the user and then display the shopped drinks with the information in the cart page for the user.
+
+```
+
+    // gets data from shopped drink api
     useEffect(() => {
       const getData = async () => {
         const { data } = await axios.get('/api/shopped-drinks')
@@ -330,6 +367,26 @@ https://user-images.githubusercontent.com/71145696/129399555-fcf92c4b-411d-4838-
       }
       getData()
     }, [])
+```
+
+The handleDelete: this is the delete function that removes(deletes) a drink on click of the 'Delete-Button'
+
+```
+
+    const handleDelete = (event) => {
+    console.log('changed=>', event.target.value)
+    const getDelete = async () => {
+      const { data } = await axios.delete(`/api/shopped-drinks/${event.target.value}`)
+      console.log('MYDATA', data)
+      if (data === 'success') {
+        const { data } = await axios.get('/api/shopped-drinks')
+        console.log('RESULT', data)
+        setShoppedDrinks(data)
+      }
+    }
+    getDelete()
+  }
+
 ```
 
 
