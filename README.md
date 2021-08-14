@@ -310,20 +310,19 @@ Next I created controllers to enable the user add and delete drinks from the car
 <h3>Frontend(homepage, cart/basket)</h3>
 Having successfully built our API and tested it through Insomnia, we were ready to move onto the React frontend. I focused on designing the homepage, building the cart, map functionalities. 
 
-<h4>Homepage:</h4> I styled the homepage using the React Bootstrap CSS Framework, CSS3 + SCSS.
+<h4>Homepage:</h4> 
+<P> I styled the homepage using the React Bootstrap CSS Framework, CSS3 + SCSS. I also was open to other team members contributions such as font styling so as to carry everyone along. You can watch the video below that shows the homepage.</p>
+
 
 https://user-images.githubusercontent.com/71145696/129399555-fcf92c4b-411d-4838-980c-706100dc6b52.mov
 
-<h4>Cart/Basket:</h4> The shopped drink is displayed on the page, and users are able to view the price, their inputed quantity and the subtotal price of the drink. The user can also delete the drink from the cart. I built the cart page using the React.js and styled using React Bootstrap CSS Framework, CSS3 + SCSS. 
+<h4>Cart/Basket:</h4> 
 
-![Screenshot 2021-08-13 at 19 17 23](https://user-images.githubusercontent.com/71145696/129402210-95b5c4ed-11b1-4968-b099-18ccbd584924.png)
-![Screenshot 2021-08-13 at 20 41 36](https://user-images.githubusercontent.com/71145696/129410820-a1f5312f-d989-4db8-b34b-cec69d91581d.png)
-
-I wanted the user to be able to select the qquantity of the drinks they were shopping for, and see the price displayed before 'Adding to basket', so in the drink's show page (that had been fundamentally built and styled by another team member) i.e the `Drink.js` file I implemented the `handleChange` function that sets the quantity of drinks selected by the user and also the `handleCart` function which includes a formdata for the drink's ID, quantity, price and total.
+I wanted the user to be able to select the quantity of the drinks they were shopping for, and see the price displayed before 'Adding to basket', so in the drink's show page (that had been fundamentally built and styled by another team member) i.e the `Drink.js` file I implemented the `handleChange` function that sets the quantity of drinks selected by the user and also the `handleCart` function which includes a formdata for the drink's ID, quantity, price and total.
 
 ![Screenshot 2021-08-13 at 20 40 11](https://user-images.githubusercontent.com/71145696/129410753-8a2c3e54-7bc4-4f73-a7f2-ed23d4ba35de.png)
 
-An Axios POST request is made to the shopped-drinks by drink's ID API.
+An Axios POST request is made to the 'shopped-drinks by ID' API.
 
 ```
 
@@ -356,6 +355,9 @@ An Axios POST request is made to the shopped-drinks by drink's ID API.
     }
   
 ```
+<p>The shopped drink is displayed on the page, and users are able to view the price, their inputed quantity and the subtotal price of the drink. The user can also delete the drink from the cart. I built the cart page using the React.js and styled using React Bootstrap CSS Framework, CSS3 + SCSS. </p>
+
+![Screenshot 2021-08-13 at 20 41 36](https://user-images.githubusercontent.com/71145696/129410820-a1f5312f-d989-4db8-b34b-cec69d91581d.png)
 
 On the cart's page to display the cart data that had been stored in the database I used an Axios GET request to the shopped-drinks API. This returns an array of drinks, that has been initially selected by the user and then display the shopped drinks with the information in the cart page for the user.
 
