@@ -395,4 +395,31 @@ The handleDelete: this is the delete function that removes(deletes) a drink on c
 ```
 
 
+<h1>Screenshots of other parts of the Application </h1>
+
+Our Drinks page(Index/products page)
+
+![Screenshot 2021-08-14 at 13 31 00](https://user-images.githubusercontent.com/71145696/129446409-fe5d50a2-0ac4-4d6c-994d-6507f9eb5f24.png)
+
+![Screenshot 2021-08-14 at 13 33 27](https://user-images.githubusercontent.com/71145696/129446475-8c8529a0-44a6-4b27-a472-ef1bee1e0583.png)
+
+Suggestion form
+
+![Screenshot 2021-08-14 at 13 29 37](https://user-images.githubusercontent.com/71145696/129446376-be1a038c-0305-482e-a2fe-2ad01369be1a.png)
+
+Heiss room (Suggestion page)
+
+![Screenshot 2021-08-14 at 13 29 01](https://user-images.githubusercontent.com/71145696/129446366-792de559-f3ad-4296-b817-2b429417d7c5.png)
+
+User-Profile page
+
+![Screenshot 2021-08-14 at 13 30 12](https://user-images.githubusercontent.com/71145696/129446392-989f46e4-e9c0-4a66-ab66-5ab2669b0a8f.png)
+
+
+
+
+
+
+
+
 
