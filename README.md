@@ -19,7 +19,11 @@
 
 <h1>Deployment</h1>
 <p>Please follow the link to explore the application: https://heissapp.herokuapp.com/</p>
-<p>Repository link: https://github.com/victoriaolanipekun/SEI56-Project-3</p>
+<p>You can also use the following credentials to explore the app:</p>
+
+* Email: tade@email.com
+* Password: tade1@
+
 
 <h1>Technologies used</h1>
 <li>HTML5</li>
@@ -41,6 +45,18 @@
 <li>Git & GitHub</li>
 <li>react-router-dom</li>
 <li>React Bootstrap CSS Framework</li>
+
+
+<h1>Setting Up</h1>
+<p>Repository link: https://github.com/victoriaolanipekun/SEI56-Project-3</p>
+
+To download the source code click the clone button. Run the following commands in the terminal:
+
+* To install all packages listed in the package.json:
+`npm i`
+* To run the app in your localhost, in both frontend and backend terminal:
+`npm run start`
+
 
 <h1>Motivation & Introduction</h1>
 <p>This project was my third project for the Software Engineering Immersive course, which was done in a team of 4. The aim was to build a fullstack MERN application using your own RESTful API. As a team we started out brainstorming on several ideas and interests, we all wanted an ecommerce app but yet wanted it to be based on a unique product, we soon realised we all had a common interest in hot drinks either tea or coffee so we decided to build an application that allows users to shop and suggest hot drink. We decided on the name 'Heiss' (heiß) which is 'hot' in German for the app.
@@ -355,7 +371,7 @@ An Axios POST request is made to the 'shopped-drinks by ID' API.
     }
   
 ```
-<p>The shopped drink is displayed on the page, and users are able to view the price, their inputed quantity and the subtotal price of the drink. The user can also delete the drink from the cart. I built the cart page using the React.js and styled using React Bootstrap CSS Framework, CSS3 + SCSS. </p>
+<p>I built the cart page such that the shopped drink is displayed on the page, and users are able to view the price, their inputed quantity and the subtotal price of the drink. The user can also delete the drink from the cart. I built the cart page using the React.js and styled using React Bootstrap CSS Framework, CSS3 + SCSS. </p>
 
 ![Screenshot 2021-08-13 at 20 41 36](https://user-images.githubusercontent.com/71145696/129410820-a1f5312f-d989-4db8-b34b-cec69d91581d.png)
 
@@ -416,9 +432,88 @@ User-Profile page
 ![Screenshot 2021-08-14 at 13 30 12](https://user-images.githubusercontent.com/71145696/129446392-989f46e4-e9c0-4a66-ab66-5ab2669b0a8f.png)
 
 
+<h1>Challenges</h1>
+
+My main challenge on this project was for the map functionality, I wanted users to be able to select drinks on the map based on the drink's place of origin without having to go on our drinks page. I had worked on the map functionalities but due to time constraint it wasn't completed so it couldn't be part of the MVP.
+
+I started out by updating the drink schema on the backend with each drink latitude and longitude with the country of orign icons, before moving on to work on the frontend. However the data wasn't translating on the homepage although it was seen in the google chrome developer tool while console logging, I even tried to hardcode the coordinates as seen below but it wasn't still responsive on the homepage. I also got feedback while at it and it was said that the problem had to do with styling, however due to limited time I had to priotise other functons since we already had the Drinks page that was similar in use when user had to shop our drinks. 
+
+```
+
+     const AnimatedMap = () => {
+
+      const reactMapToken = process.env.REACT_APP_MAPBOX_TOKEN
+
+      console.log('react-map-token', reactMapToken)
+      const [locationData, setLocationData] = useState([])
+      //const typesOfLocation = ['All']
+      const [viewport, setNewViewport] = useState({
+        latitude: 21.521757,
+        longitude: -77.781166,
+        zoom: 12,
+        bearing: 0,
+        pitch: 0,
+      })
+      const [hasError, setHasError] = useState(false)
+
+      // request to Api on the first render
+      useEffect(() => {
+        const getData = async () => {
+          try {
+            const { data } = await axios.get('/api/drinks')
+            setLocationData(data)
+            console.log('Test Me=>', data)
+          } catch (err) {
+            setHasError(true)
+            console.log(err)
+          }
+        }
+        getData()
+      }, [])
+
+      const MapController = ({ onClick }) => {
+        return (
+          <div className="map-controller">
+            <div className="buttons">
+              {locationData.map(location => (
+                <button
+                  key={location.id}
+                  className="button is-small is-rounded is-info"
+                  onClick={() => onClick(location)}
+                >
+                  {location.icon}
+                </button>
+              ))
+              }
+            </div>
+          </div>
+        )
+      }
+
+      console.log('Location Data=>', locationData)
+
+```
 
 
+<h1>Wins</h1>
 
+<li>Building a functional application in 9 days is definitely a win for me</li>
+<li>Working as a team which involved collaborating, ensuring everyone was heard and individual opinions mattered</li>
+<li>Despite our different approach to ideas working towards a consensus as a team and achieving our goals was a win</li>
+<li>Lastly, the functionalities I built are something I'm glad I accomplished as they were a good sign of my learnings and growth</li>
+
+
+<h1>Key Learnings</h1>
+
+This was a great learning experience as I was able to build full stack features, work with third party APIs while working in a larger group. One of the most important lesson was the experience of working in feature branches and merging into development branch. This meant as a team we had to be super clear and communicate while we individually ensured any merge conflicts were resolved without an loss of work. Then also finally moving the application from development into production was another key learning for me that I cherish.
+
+<h1>Future Features</h1>
+
+<li>Work on complete responsiveness as the styling on some pages isn’t showing properly on large screens.</li>
+
+<li>Complete the map feature functionality so that users can pick their drinks based on the drink's origin from the map.</li>
+
+<li>More stying, lol😅 because styling never finishes really.</li>
 
 
 
