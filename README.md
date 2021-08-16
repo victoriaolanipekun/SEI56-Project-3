@@ -52,7 +52,7 @@
 
 To download the source code click the clone button. Run the following commands in the terminal:
 
-* From your root folder run yarn seed `yarn seed`
+* From your root folder run `yarn seed`
 * To run the app in your localhost, in the frontend terminal run `yarn start`
 
 
