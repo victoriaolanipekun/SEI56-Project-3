@@ -52,10 +52,8 @@
 
 To download the source code click the clone button. Run the following commands in the terminal:
 
-* To install all packages listed in the package.json:
-`npm i`
-* To run the app in your localhost, in both frontend and backend terminal:
-`npm run start`
+* From your root folder run yarn seed `yarn seed`
+* To run the app in your localhost, in the frontend terminal run `yarn start`
 
 
 <h1>Motivation & Introduction</h1>
