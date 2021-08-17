@@ -95,7 +95,8 @@ This created an environment in which every member of the team knew the details o
 
 A Drink Schema: Each key in our code `drinkSchema` defines a property in our documents which will be cast to its associated SchemaType (Mongoose converts our schema paths into SchemaTypes automatically).
 
-```
+```javascript
+
     const drinkSchema = new mongoose.Schema({
       drink: { type: String, required: true, unique: true },
       type: { type: String, required: true },
@@ -114,7 +115,8 @@ A Drink Schema: Each key in our code `drinkSchema` defines a property in our doc
 
 In the `config` folder we created a `router.js` file to define our API endpoints for calling each collection
 
-```
+```javascript
+
     router.route('/drinks')
       .get(getAllDrinks)
       .post(createDrink)
@@ -133,7 +135,7 @@ To retrive data from the database, each of these defined endpoints relies on a s
 * The controller holds functionality to add new drinks, edit and delete them.
 * The example below shows the process of adding a new drink to the database by a registered owner identified by `req.currentUser._id `, using the create method.
 
-```
+```javascript
     
     export const createDrink = async (req, res) => {
       try {
@@ -159,13 +161,15 @@ Our approach to the User model was to allow more functionality in the app once a
 
 A User Schema: The `userSchema` defines a property in our documents which will be used in the registeration and login (authentication process).
 
-```
+```javascript
+
     const userSchema = new mongoose.Schema({
       username: { type: String, required: true, maxLength: 30, unique: true },
       email: { type: String, required: true, unique: true },
       password: { type: String, required: true }
       image: { type: String, required: true }
     })
+    
 ```
 Mongoose has some incredibly powerful in-built methods which we also used in conjunction with Bcrypt for passwords hashing. Using the `pre` method, we were able to access Mongoose Schema’s lifecycle methods and run functions when users either register or login:
 
@@ -179,7 +183,8 @@ Mongoose has some incredibly powerful in-built methods which we also used in con
 
 In the `config` folder we created a `router.js` file to define our API endpoints built specifically for users
 
-```
+```javascript
+
     router.route('/register')
       .post(registerUser)
 
@@ -192,7 +197,7 @@ In the `config` folder we created a `router.js` file to define our API endpoints
 * The controller holds functionalities that will enable users to register and login through the `auth.js` file
 * The example below shows the process of registering a new user to the database, using the create method.
 
-```
+```javascript
     
     export const registerUser = async (req, res) => {
       try {
@@ -213,7 +218,7 @@ In the `config` folder we created a `router.js` file to define our API endpoints
 The secureRoute is an entirely separate file created with middleware to identify if a user is truly logged in. For the suggest a drink route which is only accessible for users stored in the database i.e already registered, we have specified the `secureRoute` function to run intially.
 
 
-```
+```javascript
     
     export const secureRoute = async (req, res, next) => {
       try {
@@ -246,7 +251,7 @@ The secureRoute is an entirely separate file created with middleware to identify
 
 Finally we went ahead to seed the database through the `seed.js` file, with the drink.js file containing hard-coded drink data which were planted into our MongoDB. An example is given below:
 
-```
+```javascript
 
     drink: 'Turkish coffee, Türk kahvesi',
     type: 'Coffee',
@@ -271,7 +276,7 @@ Once we were done with the backend as a group we set out on our individual tasks
 
 shoppedDrinkSchema: The very first step I took toward the cart build was to specify the basket model, with the newly selected (shopped) drink having a new unique ID `drinkId`, and this is in a bid to ensure that when the drink that might be added to the cart by the user is deleted the original drink in the database is still intact so hence the new ID for this.  Also for a better user experience, it was okay for a user to shop our drinks without necessarily being registered so the authentication process wasn't needed here. 
 
-```
+```javascript
 
     // Define the basket schema
     const shoppedDrinkSchema = new mongoose.Schema({
@@ -286,7 +291,7 @@ shoppedDrinkSchema: The very first step I took toward the cart build was to spec
 
 In the `router.js` file I defined our API endpoints for the cart
 
-```
+```javascript
 
     router.route('/shopped-drinks')
       .get(getAllShoppedDrinks)
@@ -302,7 +307,7 @@ In the `router.js` file I defined our API endpoints for the cart
 
 Next I created controllers to enable the user add and delete drinks from the cart. The code snippet below shows the function used to add a drink to the cart. The `findById` method was used to find a single drink by its id.
 
-```
+```javascript
 
     // CREATE CART - to add drink to cart 
     export const postShoppedDrink = async (req, res) => {
@@ -338,7 +343,7 @@ I wanted the user to be able to select the quantity of the drinks they were shop
 
 An Axios POST request is made to the 'shopped-drinks by ID' API.
 
-```
+```javascript
 
     const handleChange = (event) => {
       console.log('changed=>', event.target.value)
@@ -375,7 +380,7 @@ An Axios POST request is made to the 'shopped-drinks by ID' API.
 
 On the cart's page to display the cart data that had been stored in the database I used an Axios GET request to the shopped-drinks API. This returns an array of drinks, that has been initially selected by the user and then display the shopped drinks with the information in the cart page for the user.
 
-```
+```javascript
 
     // gets data from shopped drink api
     useEffect(() => {
@@ -390,7 +395,7 @@ On the cart's page to display the cart data that had been stored in the database
 
 The handleDelete: this is the delete function that removes(deletes) a drink on click of the 'Delete-Button'
 
-```
+```javascript
 
     const handleDelete = (event) => {
     console.log('changed=>', event.target.value)
@@ -436,7 +441,7 @@ My main challenge on this project was for the map functionality, I wanted users 
 
 I started out by updating the drink schema on the backend with each drink latitude and longitude with the country of orign icons, before moving on to work on the frontend. However the data wasn't translating on the homepage although it was seen in the google chrome developer tool while console logging, I even tried to hardcode the coordinates as seen below but it wasn't still responsive on the homepage. I also got feedback while at it and it was said that the problem had to do with styling, however due to limited time I had to priotise other functons since we already had the Drinks page that was similar in use when user had to shop our drinks. 
 
-```
+```javascript
 
      const AnimatedMap = () => {
 
