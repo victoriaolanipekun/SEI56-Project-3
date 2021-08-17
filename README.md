@@ -219,6 +219,7 @@ The secureRoute is an entirely separate file created with middleware to identify
 
 
 ```javascript
+
     
     export const secureRoute = async (req, res, next) => {
       try {
@@ -253,6 +254,7 @@ Finally we went ahead to seed the database through the `seed.js` file, with the 
 
 ```javascript
 
+
     drink: 'Turkish coffee, Türk kahvesi',
     type: 'Coffee',
     country: 'Turkey ',
@@ -266,7 +268,6 @@ Finally we went ahead to seed the database through the `seed.js` file, with the 
     latitude: 34.047863,
     icon: '🇹🇷'
   
-  
 ```
 <h2>My Individual Contribution</h2>
 Once we were done with the backend as a group we set out on our individual tasks. My tasks was to build the homepage, basket(cart) and the map functionalities. I successfully did two of the tasks while the map wasn't completely finished due to limited time and I'd delve into more details of my contribution now.
@@ -278,7 +279,7 @@ shoppedDrinkSchema: The very first step I took toward the cart build was to spec
 
 ```javascript
 
-    // Define the basket schema
+
     const shoppedDrinkSchema = new mongoose.Schema({
       drinkId: { type: String, required: true, unique: true },
       quantity: { type: Number, required: true },
@@ -292,6 +293,7 @@ shoppedDrinkSchema: The very first step I took toward the cart build was to spec
 In the `router.js` file I defined our API endpoints for the cart
 
 ```javascript
+
 
     router.route('/shopped-drinks')
       .get(getAllShoppedDrinks)
@@ -309,7 +311,7 @@ Next I created controllers to enable the user add and delete drinks from the car
 
 ```javascript
 
-    // CREATE CART - to add drink to cart 
+
     export const postShoppedDrink = async (req, res) => {
       try {
         const { id } = req.params
@@ -344,6 +346,7 @@ I wanted the user to be able to select the quantity of the drinks they were shop
 An Axios POST request is made to the 'shopped-drinks by ID' API.
 
 ```javascript
+
 
     const handleChange = (event) => {
       console.log('changed=>', event.target.value)
@@ -382,7 +385,7 @@ On the cart's page to display the cart data that had been stored in the database
 
 ```javascript
 
-    // gets data from shopped drink api
+    
     useEffect(() => {
       const getData = async () => {
         const { data } = await axios.get('/api/shopped-drinks')
@@ -391,11 +394,13 @@ On the cart's page to display the cart data that had been stored in the database
       }
       getData()
     }, [])
+    
 ```
 
 The handleDelete: this is the delete function that removes(deletes) a drink on click of the 'Delete-Button'
 
 ```javascript
+
 
     const handleDelete = (event) => {
     console.log('changed=>', event.target.value)
@@ -442,6 +447,7 @@ My main challenge on this project was for the map functionality, I wanted users 
 I started out by updating the drink schema on the backend with each drink latitude and longitude with the country of orign icons, before moving on to work on the frontend. However the data wasn't translating on the homepage although it was seen in the google chrome developer tool while console logging, I even tried to hardcode the coordinates as seen below but it wasn't still responsive on the homepage. I also got feedback while at it and it was said that the problem had to do with styling, however due to limited time I had to priotise other functons since we already had the Drinks page that was similar in use when user had to shop our drinks. 
 
 ```javascript
+
 
      const AnimatedMap = () => {
 
