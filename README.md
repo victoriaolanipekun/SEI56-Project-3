@@ -3,8 +3,13 @@
 ![homepage](https://user-images.githubusercontent.com/71145696/128992805-ee70c808-82e9-47f5-a3d1-d10e2fae250d.png)
 ![Screenshot 2021-08-13 at 19 02 07](https://user-images.githubusercontent.com/71145696/129400663-4113f634-c08e-4b64-8585-551bb9739acb.png)
 
+<h1>Overview</h1>
+<p>This project was my third project for the Software Engineering Immersive course at General Assembly London, which was done in a team of 4. The aim was to build a fullstack MERN application using your own RESTful API. As a team we started out brainstorming on several ideas and interests, we all wanted an ecommerce app but yet wanted it to be based on a unique product, we soon realised we all had a common interest in hot drinks either tea or coffee so we decided to build an application that allows users to shop and suggest hot drinks. We decided on the name 'Heiss' (heiß) which is 'hot' in German for the app.
+  
+The market fit of our application is that most professionals start out their day with a hot drink, either tea or coffee. One of the health benefits of taking hot drinks is that it may temporarily improve circulation by causing the arteries and veins to expand. The cultural fit also is something we considered. 
+</p>
 
-<h1>Brief & Timeframe</h1>
+<h1>Brief</h1>
 
 <li>As a team build a fullstack MERN (MongoDB, Express, React, Node) application using your own RESTful API</li>
 <li>Have CRUD functionality on at least one model</li>
@@ -56,13 +61,7 @@ To download the source code click the clone button. Run the following commands i
 * To run the app in your localhost, in the frontend terminal run `yarn start`
 
 
-<h1>Motivation & Introduction</h1>
-<p>This project was my third project for the Software Engineering Immersive course, which was done in a team of 4. The aim was to build a fullstack MERN application using your own RESTful API. As a team we started out brainstorming on several ideas and interests, we all wanted an ecommerce app but yet wanted it to be based on a unique product, we soon realised we all had a common interest in hot drinks either tea or coffee so we decided to build an application that allows users to shop and suggest hot drink. We decided on the name 'Heiss' (heiß) which is 'hot' in German for the app.
-  
-The market fit of our application is that most professionals start out their day with a hot drink, either tea or coffee. One of the health benefit of taking hot drinks is that it may temporarily improve circulation by causing the arteries and veins to expand. The cultural fit also is something we considered. 
-</p>
-
-<h1>Preparation & Organisation</h1>
+<h1>Approach</h1>
 <h3>Application Structural Sketch</h3>
 <p>After deliberating on the functionalities and design direction we wanted to go as a group, I started out with a sketch of the app's models and functionality in order for me to understand how our app would work at a fundamental level.</p>
 
@@ -113,7 +112,7 @@ A Drink Schema: Each key in our code `drinkSchema` defines a property in our doc
 
 <h4>Router</h4>
 
-In the `config` folder we created a `router.js` file to define our API endpoints for calling each collection
+In the `config` folder we created a `router.js` file to define our API endpoints for calling each collection:
 
 ```javascript
 
@@ -127,10 +126,10 @@ In the `config` folder we created a `router.js` file to define our API endpoints
       .delete(deleteDrink)
 
 ```
-To retrive data from the database, each of these defined endpoints relies on a separate function in the files in our `Controllers` folder
+To retrive data from the database, each of these defined endpoints relies on a separate function in the files in our `Controllers` folder.
 <h4>Controllers</h4>
 
-* We implemented functions that will enable access to the collection
+* We implemented functions that will enable access to the collection.
 * We implemented specific functions to access all of the data in the database or to find a specific drink by ID.
 * The controller holds functionality to add new drinks, edit and delete them.
 * The example below shows the process of adding a new drink to the database by a registered owner identified by `req.currentUser._id `, using the create method.
@@ -159,7 +158,7 @@ Our approach to the User model was to allow more functionality in the app once a
 
 * For our MongoDB to store individual users successfully, the User had to have its own model.
 
-A User Schema: The `userSchema` defines a property in our documents which will be used in the registeration and login (authentication process).
+A User Schema: The `userSchema` defines a property in our documents which will be used in the registration and login (authentication process).
 
 ```javascript
 
@@ -175,13 +174,13 @@ Mongoose has some incredibly powerful in-built methods which we also used in con
 
 * The first function we built was to check the password and passwordConfirmation field match from the user input during registration. If these were not to match, it would be invalid and halts the user from registering.
 
-* If during registration the first function is passed and accepted, the password entered uses bcrypt to encrypt the password before being stored into the database.Thisencryption protects the users paswords from hacker, so we were security focused. 
+* If during registration the first function is passed and accepted, the password entered uses bcrypt to encrypt the password before being stored into the database. This encryption protects the users passwords from hackers, so we were security focused. 
 
-* The final function checks the credentials of a user at login. The function checks the user inputted password against the hashed password in db, to ensure they match, else the user won't be able to login.
+* The final function checks the credentials of a user at login. The function checks the user inputted password against the hashed password in db, to ensure they match, or else the user won't be able to login.
 
 <h4>Router</h4>
 
-In the `config` folder we created a `router.js` file to define our API endpoints built specifically for users
+In the `config` folder we created a `router.js` file to define our API endpoints built specifically for users:
 
 ```javascript
 
@@ -270,7 +269,7 @@ Finally we went ahead to seed the database through the `seed.js` file, with the 
   
 ```
 <h2>My Individual Contribution</h2>
-Once we were done with the backend as a group we set out on our individual tasks. My tasks was to build the homepage, basket(cart) and the map functionalities. I successfully did two of the tasks while the map wasn't completely finished due to limited time and I'd delve into more details of my contribution now.
+Once we were done with the backend as a group we set out on our individual tasks. My tasks were to build the homepage, basket(cart) and the map functionalities. I successfully did two of the tasks while the map wasn't completely finished due to limited time and I'd delve into more details of my contribution now.
 
 <h3>Backend (Cart/Basket) </h3>
 <h4>Model</h4>
@@ -290,7 +289,7 @@ shoppedDrinkSchema: The very first step I took toward the cart build was to spec
 
 <h4>Router</h4>
 
-In the `router.js` file I defined our API endpoints for the cart
+In the `router.js` file I defined our API endpoints for the cart:
 
 ```javascript
 
@@ -307,7 +306,7 @@ In the `router.js` file I defined our API endpoints for the cart
 
 <h4>Controllers</h4>
 
-Next I created controllers to enable the user add and delete drinks from the cart. The code snippet below shows the function used to add a drink to the cart. The `findById` method was used to find a single drink by its id.
+Next I created controllers to enable the user to add and delete drinks from the cart. The code snippet below shows the function used to add a drink to the cart. The `findById` method was used to find a single drink by its id.
 
 ```javascript
 
@@ -444,7 +443,7 @@ User-Profile page
 
 My main challenge on this project was for the map functionality, I wanted users to be able to select drinks on the map based on the drink's place of origin without having to go on our drinks page. I had worked on the map functionalities but due to time constraint it wasn't completed so it couldn't be part of the MVP.
 
-I started out by updating the drink schema on the backend with each drink latitude and longitude with the country of orign icons, before moving on to work on the frontend. However the data wasn't translating on the homepage although it was seen in the google chrome developer tool while console logging, I even tried to hardcode the coordinates as seen below but it wasn't still responsive on the homepage. I also got feedback while at it and it was said that the problem had to do with styling, however due to limited time I had to priotise other functons since we already had the Drinks page that was similar in use when user had to shop our drinks. 
+I started out by updating the drink schema on the backend with each drink latitude and longitude with the country of orign icons, before moving on to work on the frontend. However the data wasn't translating on the homepage although it was seen in the google chrome developer tool while console logging, I even tried to hardcode the coordinates as seen below but it wasn't still responsive on the homepage. I also got feedback while at it and it was said that the problem had to do with styling, however due to limited time I had to priotise other functons since we already had the Drinks page that was similar in use when users shopped for our drinks. 
 
 ```javascript
 
@@ -503,18 +502,20 @@ I started out by updating the drink schema on the backend with each drink latitu
 
 ```
 
+<h1>Bugs and errors</h1>
+The map functionality isn't quite there yet - I unfortunately ran out of time building it. In its current form it is quite functional on the backend but is yet to be translated in the frontend.
 
 <h1>Wins</h1>
 
-<li>Building a functional application in 9 days is definitely a win for me</li>
-<li>Working as a team which involved collaborating, ensuring everyone was heard and individual opinions mattered</li>
-<li>Despite our different approach to ideas working towards a consensus as a team and achieving our goals was a win</li>
-<li>Lastly, the functionalities I built are something I'm glad I accomplished as they were a good sign of my learnings and growth</li>
+<li>Building a functional application in 9 days is definitely a win for me.</li>
+<li>Working as a team which involved collaborating, ensuring everyone was heard and individual opinions mattered.</li>
+<li>Despite our different approach to ideas working towards a consensus as a team and achieving our goals was a win.</li>
+<li>Lastly, the functionalities I built are something I'm glad I accomplished as they were a good sign of my learnings and growth.</li>
 
 
 <h1>Key Learnings</h1>
 
-This was a great learning experience as I was able to build full stack features, work with third party APIs while working in a larger group. One of the most important lesson was the experience of working in feature branches and merging into development branch. This meant as a team we had to be super clear and communicate while we individually ensured any merge conflicts were resolved without an loss of work. Then also finally moving the application from development into production was another key learning for me that I cherish.
+This was a great learning experience as I was able to build full stack features, work with third party APIs while working in a larger group. One of the most important lessons was the experience of working in feature branches and merging into development branch. This meant as a team we had to be super clear and communicate while we individually ensured any merge conflicts were resolved without any loss of work. Then also finally moving the application from development into production was another key learning for me that I cherish.
 
 <h1>Future Features</h1>
 
