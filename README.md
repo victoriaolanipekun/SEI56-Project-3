@@ -193,7 +193,7 @@ In the `config` folder we created a `router.js` file to define our API endpoints
 ```
 <h4>User Controller</h4>
 
-* The controller holds functionalities that will enable users to register and login through the `auth.js` file
+* The controller holds functionalities that will enable users to register and login through the `auth.js` file.
 * The example below shows the process of registering a new user to the database, using the create method.
 
 ```javascript
