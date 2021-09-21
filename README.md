@@ -11,9 +11,9 @@ The market fit of our application is that most professionals start out their day
 
 <h1>Brief</h1>
 
-<li>As a team build a fullstack MERN (MongoDB, Express, React, Node) application using your own RESTful API</li>
-<li>Have CRUD functionality on at least one model</li>
-<li>Time-frame: 9 days</li>
+<li>As a team build a fullstack MERN (MongoDB, Express, React, Node) application using your own RESTful API.</li>
+<li>Have CRUD functionality on at least one model.</li>
+<li>Time-frame: 9 days.</li>
 
 <h1>Team</h1>
 
@@ -274,7 +274,7 @@ Once we were done with the backend as a group we set out on our individual tasks
 <h3>Backend (Cart/Basket) </h3>
 <h4>Model</h4>
 
-shoppedDrinkSchema: The very first step I took toward the cart build was to specify the basket model, with the newly selected (shopped) drink having a new unique ID `drinkId`, and this is in a bid to ensure that when the drink that might be added to the cart by the user is deleted the original drink in the database is still intact so hence the new ID for this.  Also for a better user experience, it was okay for a user to shop our drinks without necessarily being registered so the authentication process wasn't needed here. 
+shoppedDrinkSchema: The very first step I took toward the cart build was to specify the basket model, with the newly selected (shopped) drink having a new unique ID `drinkId`, and this is in a bid to ensure that when the drink that might be added to the cart by the user is deleted the original drink in the database is still intact so hence the new ID for this.  Also for a better user experience, it was okay for a user to for shop our drinks without necessarily being registered so the authentication process wasn't needed here. 
 
 ```javascript
 
